@@ -2,10 +2,10 @@ import { nanoid } from 'nanoid';
 import { FilterDiv, FilterInput } from './Filter.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFilter } from 'redux/filterSlice';
-import { filterSelector } from 'redux/selectors';
+import { selectFilterValue } from 'redux/selectors';
 
 export const Filter = () => {
-  const filterValue = useSelector(filterSelector);
+  const filterValue = useSelector(selectFilterValue);
   const dispatch = useDispatch();
 
   const handleChange = e => {

@@ -1,18 +1,16 @@
 import { useSelector } from 'react-redux';
+import { selectFiltredContacts } from 'redux/selectors';
 import { StyledContactList } from './ContactList.styled';
 import { ContactListItem } from '../ContactListItem/ContactListItem';
-import { contactsSelector, filterSelector } from 'redux/selectors';
 
 export const ContactList = () => {
-  const contacts = useSelector(contactsSelector);
-  const filterValue = useSelector(filterSelector);
-  const filtredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filterValue)
-  );
+  const filtredContacts = useSelector(selectFiltredContacts);
 
-  return (
+  return filtredContacts.length ? (
     <StyledContactList>
-      <ContactListItem contacts={filtredContacts} />
+      <ContactListItem />
     </StyledContactList>
+  ) : (
+    <p>There are no contacts with such a name</p>
   );
 };
